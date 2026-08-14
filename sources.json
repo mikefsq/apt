@@ -1,0 +1,30 @@
+{
+  "archive": {
+    "origin": "mikefsq",
+    "label": "mikefsq",
+    "url": "https://mikefsq.github.io/apt",
+    "description": "Debian packages built from GitHub release assets.",
+    "keyring": "mikefsq-archive-keyring.gpg",
+    "sources_file": "mikefsq.sources"
+  },
+
+  "sources": [
+    {
+      "name": "phd2",
+      "repo": "mikefsq/phd2",
+      "release": "latest",
+      "suites": ["bookworm", "trixie"],
+      "arches": ["amd64", "arm64"],
+      "assets": [
+        {
+          "match": "phd2-debian-{suite}-{arch}-free.zip",
+          "component": "main"
+        },
+        {
+          "match": "phd2-debian-{suite}-{arch}-nonfree.zip",
+          "component": "non-free"
+        }
+      ]
+    }
+  ]
+}

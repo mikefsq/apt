@@ -1,0 +1,62 @@
+name: Publish archive
+
+# Manual only. Packages are built by hand in their own repositories, so the
+# archive is published by hand too — a schedule would only republish the same
+# assets, and a notify step would have to live in a branch that is headed
+# upstream as a pull request.
+#
+# Run it from the Actions tab, or: gh workflow run publish.yml --repo mikefsq/apt
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-archive
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install archive tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends apt-utils gnupg unzip jq
+
+      - name: Import signing key
+        env:
+          APT_GPG_PRIVATE_KEY: ${{ secrets.APT_GPG_PRIVATE_KEY }}
+        run: |
+          if [ -z "$APT_GPG_PRIVATE_KEY" ]; then
+            echo "::error::APT_GPG_PRIVATE_KEY is not set — apt rejects an unsigned archive"
+            exit 1
+          fi
+          echo "$APT_GPG_PRIVATE_KEY" | gpg --batch --import
+
+      - name: Build archive
+        env:
+          # Lifts the GitHub API rate limit; the release assets themselves are public.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APT_GPG_PASSPHRASE: ${{ secrets.APT_GPG_PASSPHRASE }}
+        run: ./bin/build-archive out
+
+      - name: Verify the archive is signed
+        run: |
+          for suite in out/dists/*/; do
+            test -f "$suite/InRelease" || { echo "::error::missing InRelease in $suite"; exit 1; }
+          done
+
+      - name: Publish to Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages
+          # Single orphan commit each time, so old .deb files never accumulate
+          # in the repository history.
+          force_orphan: true
+          commit_message: 'Publish archive'

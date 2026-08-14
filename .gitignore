@@ -1,0 +1,6 @@
+out/
+*.deb
+*.zip
+.DS_Store
+keys/*
+!keys/archive-key.asc

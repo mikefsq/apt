@@ -1,0 +1,226 @@
+#!/usr/bin/env bash
+#
+# Build a signed Debian archive from the GitHub release assets named in
+# sources.json, writing a tree that GitHub Pages can serve verbatim.
+#
+#
+
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+OUT="${1:-$ROOT/out}"
+MANIFEST="${MANIFEST:-$ROOT/sources.json}"
+KEY_ASC="${KEY_ASC:-$ROOT/keys/archive-key.asc}"
+
+need() { command -v "$1" >/dev/null 2>&1 || { echo "error: $1 is required but not installed" >&2; exit 1; }; }
+need jq
+need curl
+need unzip
+
+if ! command -v apt-ftparchive >/dev/null 2>&1; then
+  cat >&2 <<'EOF'
+error: apt-ftparchive not found.
+EOF
+  exit 1
+fi
+
+# A token lifts the GitHub API rate limit from 60/hour to 5000. Public release
+# assets download fine without one, so this stays optional.
+gh_api() {
+  curl -fsSL -H "Accept: application/vnd.github+json" \
+    ${GITHUB_TOKEN:+-H "Authorization: Bearer $GITHUB_TOKEN"} "$1"
+}
+
+ORIGIN=$(jq -r '.archive.origin' "$MANIFEST")
+LABEL=$(jq -r '.archive.label' "$MANIFEST")
+ARCHIVE_URL=$(jq -r '.archive.url' "$MANIFEST")
+DESCRIPTION=$(jq -r '.archive.description' "$MANIFEST")
+# Both names travel into every user's system, so they live in the manifest
+# rather than being hardcoded: renaming either one later breaks installs.
+KEYRING=$(jq -r '.archive.keyring' "$MANIFEST")
+SOURCES_FILE=$(jq -r '.archive.sources_file' "$MANIFEST")
+
+rm -rf "$OUT"
+mkdir -p "$OUT"
+# Resolved now because the indexing step runs from inside $OUT, after which a
+# relative path no longer points anywhere.
+OUT="$(cd "$OUT" && pwd)"
+WORK=$(mktemp -d)
+trap 'rm -rf "$WORK"' EXIT
+
+echo "==> Collecting packages"
+
+# Suites and architectures are collected across every source so the Release
+# files can list what actually got published rather than what was requested.
+: >"$WORK/suites"
+: >"$WORK/arches"
+
+jq -c '.sources[]' "$MANIFEST" | while read -r src; do
+  name=$(jq -r '.name' <<<"$src")
+  repo=$(jq -r '.repo' <<<"$src")
+  release=$(jq -r '.release' <<<"$src")
+
+  if [ "$release" = "latest" ]; then
+    rel_json=$(gh_api "https://api.github.com/repos/$repo/releases/latest")
+  else
+    rel_json=$(gh_api "https://api.github.com/repos/$repo/releases/tags/$release")
+  fi
+  tag=$(jq -r '.tag_name' <<<"$rel_json")
+  echo "    $name: $repo @ $tag"
+
+  for suite in $(jq -r '.suites[]' <<<"$src"); do
+    echo "$suite" >>"$WORK/suites"
+    for arch in $(jq -r '.arches[]' <<<"$src"); do
+      echo "$arch" >>"$WORK/arches"
+
+      jq -c '.assets[]' <<<"$src" | while read -r spec; do
+        match=$(jq -r '.match' <<<"$spec")
+        component=$(jq -r '.component' <<<"$spec")
+
+        asset=${match//\{suite\}/$suite}
+        asset=${asset//\{arch\}/$arch}
+
+        url=$(jq -r --arg n "$asset" \
+          '.assets[] | select(.name == $n) | .browser_download_url' <<<"$rel_json")
+        if [ -z "$url" ]; then
+          echo "    warning: $repo @ $tag has no asset named $asset — skipped" >&2
+          continue
+        fi
+
+        # The pool is split by suite. Debian shares one pool across suites, but
+        # here each suite gets its own build of the same version, so a shared
+        # pool would leave apt-ftparchive unable to tell which .deb belongs to
+        # which suite's index.
+        dest="$OUT/pool/$suite/$component/${name:0:1}/$name"
+        mkdir -p "$dest"
+
+        tmp="$WORK/dl"
+        rm -rf "$tmp" && mkdir -p "$tmp"
+        curl -fsSL -o "$tmp/asset.zip" "$url"
+        unzip -oq "$tmp/asset.zip" -d "$tmp"
+        find "$tmp" -name '*.deb' -exec mv {} "$dest/" \;
+        echo "      $asset -> pool/$suite/$component/${name:0:1}/$name"
+      done
+    done
+  done
+done
+
+# Space separated, not newline separated: these values are interpolated into
+# Release fields, which must each occupy a single line.
+SUITES=$(sort -u "$WORK/suites" | tr '\n' ' ')
+ARCHES=$(sort -u "$WORK/arches" | tr '\n' ' ')
+SUITES=${SUITES% }
+ARCHES=${ARCHES% }
+[ -n "$SUITES" ] || { echo "error: no packages collected" >&2; exit 1; }
+
+echo "==> Indexing"
+
+# apt-ftparchive writes Filename: paths relative to the working directory, and
+# those paths end up in Packages exactly as apt will request them.
+cd "$OUT"
+
+for suite in $SUITES; do
+  components=""
+  for component in main non-free; do
+    [ -d "pool/$suite/$component" ] || continue
+    components="$components $component"
+
+    for arch in $ARCHES; do
+      dir="dists/$suite/$component/binary-$arch"
+      mkdir -p "$dir"
+      apt-ftparchive --arch "$arch" packages "pool/$suite/$component" >"$dir/Packages"
+      gzip -9cf "$dir/Packages" >"$dir/Packages.gz"
+      echo "    dists/$suite/$component/binary-$arch: $(grep -c '^Package:' "$dir/Packages" || true) package(s)"
+    done
+  done
+  components=${components# }
+
+  apt-ftparchive \
+    -o "APT::FTPArchive::Release::Origin=$ORIGIN" \
+    -o "APT::FTPArchive::Release::Label=$LABEL" \
+    -o "APT::FTPArchive::Release::Suite=$suite" \
+    -o "APT::FTPArchive::Release::Codename=$suite" \
+    -o "APT::FTPArchive::Release::Components=$components" \
+    -o "APT::FTPArchive::Release::Architectures=$ARCHES" \
+    -o "APT::FTPArchive::Release::Description=$DESCRIPTION" \
+    release "dists/$suite" >"$WORK/Release"
+  mv "$WORK/Release" "dists/$suite/Release"
+done
+
+echo "==> Signing"
+
+KEYID="${APT_GPG_KEYID:-}"
+if [ -z "$KEYID" ]; then
+  KEYID=$(gpg --list-secret-keys --with-colons 2>/dev/null | awk -F: '/^sec:/ {print $5; exit}')
+fi
+
+if [ -n "$KEYID" ]; then
+  gpg_args=(--batch --yes --pinentry-mode loopback --local-user "$KEYID")
+  [ -n "${APT_GPG_PASSPHRASE:-}" ] && gpg_args+=(--passphrase "$APT_GPG_PASSPHRASE")
+
+  for suite in $SUITES; do
+    gpg "${gpg_args[@]}" --clearsign -o "dists/$suite/InRelease" "dists/$suite/Release"
+    gpg "${gpg_args[@]}" --detach-sign --armor -o "dists/$suite/Release.gpg" "dists/$suite/Release"
+    echo "    dists/$suite signed with $KEYID"
+  done
+else
+  echo "    no signing key — archive is UNSIGNED and apt will refuse it" >&2
+fi
+
+if [ -f "$KEY_ASC" ]; then
+  gpg --dearmor <"$KEY_ASC" >"$KEYRING"
+  echo "    published $KEYRING"
+else
+  echo "    warning: $KEY_ASC missing — no keyring published" >&2
+fi
+
+echo "==> Writing web content"
+
+# Pages runs Jekyll unless told not to, and Jekyll drops paths beginning with a
+# dot or an underscore. A Debian archive is full of them.
+touch .nojekyll
+
+{
+  for suite in $SUITES; do
+    for packages in dists/"$suite"/*/binary-*/Packages; do
+      [ -f "$packages" ] || continue
+      component=$(echo "$packages" | cut -d/ -f3)
+      awk -v suite="$suite" -v component="$component" '
+        /^Package:/ { pkg = $2 }
+        /^Version:/ { ver = $2 }
+        /^Architecture:/ { arch = $2 }
+        /^Size:/ { size = $2 }
+        /^$/ { if (pkg != "") { printf "%s\t%s\t%s\t%s\t%s\n", pkg, ver, suite, component, size; pkg = "" } }
+        END { if (pkg != "") printf "%s\t%s\t%s\t%s\t%s\n", pkg, ver, suite, component, size }
+      ' "$packages"
+    done
+  done
+} | sort -u >"$WORK/packages.tsv"
+
+while IFS=$'\t' read -r pkg ver suite component size; do
+  mb=$(awk -v b="$size" 'BEGIN { printf "%.1f MB", b / 1048576 }')
+  echo "<tr><td>$pkg</td><td><code>$ver</code></td><td>$suite</td><td>$component</td><td>$mb</td></tr>"
+done <"$WORK/packages.tsv" >"$WORK/package_rows.html"
+
+jq -r '.sources[] |
+  "<tr><td>\(.name)</td><td><a href=\"https://github.com/\(.repo)/releases\">\(.repo)</a></td></tr>"' \
+  "$MANIFEST" >"$WORK/source_rows.html"
+
+# The page is a template so the prose can be edited without touching this
+# script. Multi-line values are spliced with r-commands rather than s-commands,
+# which would choke on the HTML.
+sed -e "s|@ORIGIN@|$ORIGIN|g" \
+    -e "s|@DESCRIPTION@|$DESCRIPTION|g" \
+    -e "s|@ARCHIVE_URL@|$ARCHIVE_URL|g" \
+    -e "s|@KEYRING@|$KEYRING|g" \
+    -e "s|@SOURCES_FILE@|$SOURCES_FILE|g" \
+    -e "s|@SUITES@|$SUITES|g" \
+    -e "s|@ARCHES@|$ARCHES|g" \
+    -e "/@PACKAGE_ROWS@/{r $WORK/package_rows.html
+d}" \
+    -e "/@SOURCE_ROWS@/{r $WORK/source_rows.html
+d}" \
+    "$ROOT/web/index.html.tmpl" >index.html
+
+echo "==> Done: $OUT"
+du -sh "$OUT" | awk '{print "    " $1 " total"}'
