@@ -7,14 +7,127 @@
     "keyring": "mikefsq-archive-keyring.gpg",
     "sources_file": "mikefsq.sources"
   },
-
   "sources": [
+    {
+      "name": "alpacahurd",
+      "repo": "mikefsq/alpacahurd",
+      "release": "latest",
+      "suites": [
+        "bookworm",
+        "trixie"
+      ],
+      "arches": [
+        "amd64",
+        "arm64"
+      ],
+      "assets": [
+        {
+          "match": "alpacahurd_{version}_{arch}.deb",
+          "component": "main"
+        }
+      ]
+    },
+    {
+      "name": "alpacahurd-drivers",
+      "repo": "mikefsq/goalpaca-devices",
+      "release": "latest",
+      "suites": [
+        "bookworm",
+        "trixie"
+      ],
+      "arches": [
+        "amd64",
+        "arm64"
+      ],
+      "assets": [
+        {
+          "match": "alpacahurd-asiam5_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-asieaf_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-asiefw_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-astrocam_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-focuscube_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-focuslynx_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-mgpbox_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-oasisfoc_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-oasisfw_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-onstep_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-ptpcam_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-rst_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-tenmicron_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-unihedron_{version}_{arch}.deb",
+          "component": "main"
+        }
+      ]
+    },
+    {
+      "name": "alpacahurd-drivers-pi",
+      "repo": "mikefsq/goalpaca-devices",
+      "release": "latest",
+      "suites": [
+        "bookworm",
+        "trixie"
+      ],
+      "arches": [
+        "arm64"
+      ],
+      "assets": [
+        {
+          "match": "alpacahurd-asiair_{version}_{arch}.deb",
+          "component": "main"
+        }
+      ]
+    },
     {
       "name": "phd2",
       "repo": "mikefsq/phd2",
       "release": "latest",
-      "suites": ["bookworm", "trixie"],
-      "arches": ["amd64", "arm64"],
+      "suites": [
+        "bookworm",
+        "trixie"
+      ],
+      "arches": [
+        "amd64",
+        "arm64"
+      ],
       "assets": [
         {
           "match": "phd2-debian-{suite}-{arch}-free.zip",

@@ -77,8 +77,14 @@ jq -c '.sources[]' "$MANIFEST" | while read -r src; do
         match=$(jq -r '.match' <<<"$spec")
         component=$(jq -r '.component' <<<"$spec")
 
+        # {tag} is the release tag as GitHub reports it; {version} drops a
+        # leading v, which is what a .deb filename carries. A repository whose
+        # workflow attaches its packages directly names them after the version,
+        # so without this the asset could only be matched by pinning it here.
         asset=${match//\{suite\}/$suite}
         asset=${asset//\{arch\}/$arch}
+        asset=${asset//\{tag\}/$tag}
+        asset=${asset//\{version\}/${tag#v}}
 
         url=$(jq -r --arg n "$asset" \
           '.assets[] | select(.name == $n) | .browser_download_url' <<<"$rel_json")
@@ -94,11 +100,22 @@ jq -c '.sources[]' "$MANIFEST" | while read -r src; do
         dest="$OUT/pool/$suite/$component/${name:0:1}/$name"
         mkdir -p "$dest"
 
+        # A release carries its packages in one of two shapes. A workflow that
+        # hands over its build artifacts attaches them as zips, since that is
+        # what GitHub Actions produces; a workflow that uploads its packages
+        # itself attaches the .deb files. Both end up in the pool.
         tmp="$WORK/dl"
         rm -rf "$tmp" && mkdir -p "$tmp"
-        curl -fsSL -o "$tmp/asset.zip" "$url"
-        unzip -oq "$tmp/asset.zip" -d "$tmp"
-        find "$tmp" -name '*.deb' -exec mv {} "$dest/" \;
+        case $asset in
+        *.deb)
+            curl -fsSL -o "$dest/$asset" "$url"
+            ;;
+        *)
+            curl -fsSL -o "$tmp/asset.zip" "$url"
+            unzip -oq "$tmp/asset.zip" -d "$tmp"
+            find "$tmp" -name '*.deb' -exec mv {} "$dest/" \;
+            ;;
+        esac
         echo "      $asset -> pool/$suite/$component/${name:0:1}/$name"
       done
     done
