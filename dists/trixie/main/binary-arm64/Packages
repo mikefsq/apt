@@ -1,0 +1,514 @@
+Package: alpacahurd-asiair
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8104
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers-pi/alpacahurd-asiair_0.1.1_arm64.deb
+Size: 2359216
+MD5sum: 12dfe0840aa21b7496b69fbbb48930e8
+SHA1: 087d9bcc420cecc2ae0945fcfed5ae8e3c16c0e0
+SHA256: 11d8c6adc0a3c8e29d50bb62741c8a4fef1970108a0e6b8eb9690bb1bd07ef2f
+SHA512: 14ff8e33eae58bd3f8c18812589da498a3def8313aa05116e9d0d5c5ae07bc960033dc994207f8bec0a736f4f3a6dd6830c00c2fd82d2059e8c82e21b296a1db
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: asiair Alpaca driver for alpacahurd
+ The asiair device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/asiair.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-smpro-focuser
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8104
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers-smpro/alpacahurd-smpro-focuser_0.1.1_arm64.deb
+Size: 2369332
+MD5sum: 146392a023ccd85a71f81a79392d749e
+SHA1: 71d2031dbc54ab507b4bd92ac231a5e4d1bffd9c
+SHA256: f973e4cefe4d0fcfe33768b2ba344352cd0d9856db391a984de98c03575e4247
+SHA512: 112317dfe622e946dd181dbbe2a2d3cb6fa7df70e68465b952bcac97c58c72ec68263a8e697cd8da8aef5dde46fc5832a479426c6dce7ad6d4d8c587d21f7f2f
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: smpro-focuser Alpaca driver for alpacahurd
+ The smpro-focuser device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/smpro-focuser.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-smpro-switch
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8104
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers-smpro/alpacahurd-smpro-switch_0.1.1_arm64.deb
+Size: 2369824
+MD5sum: 374d664f5f750604a0bd1513cfcdc2b6
+SHA1: 42a79702bdafb986f21728e6f719eedb7a7e290e
+SHA256: 8e9477c3920a7cceba39219a75d51fd5f131575b2fa6c4f37f4f6307fe2ac6e1
+SHA512: 2e332ee406cedfe776aec4e31f36ae6db298abc532e65afc83757d348ef393c1a81600f8df64003f28a14514004429913a31d36cc98b47c3b1007de58dad7e2c
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: smpro-switch Alpaca driver for alpacahurd
+ The smpro-switch device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/smpro-switch.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-asiam5
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8232
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-asiam5_0.1.1_arm64.deb
+Size: 2394056
+MD5sum: a2f9551057d8a0e3dc75ddf8aab29db4
+SHA1: 5511d08ce1814ea13b64120098fe9e5c43c64e70
+SHA256: e7ddb5f20fa429ec6e60a2010598eafd027f9a38e0618807520c9b7c0c9a1850
+SHA512: 56c5c8a570296cb5eddef7b696607ed64a5d32340739313ee7e914dbb9d38e85c550f7f2e52bb0f6dddaf4c620727f5b0b64176c2e6ce93b7a7e9957d5f067aa
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: asiam5 Alpaca driver for alpacahurd
+ The asiam5 device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/asiam5.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-asieaf
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 7976
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-asieaf_0.1.1_arm64.deb
+Size: 2342428
+MD5sum: 84a5b1a31b814d7f3e4599424fb2d5db
+SHA1: 67b0c89bf82e74312069e7e2ca19a9e6146a7f70
+SHA256: 3d328c5e17ac6db28a0d4ee345966918e7832f7c2e7af0670ac2b435699f1d69
+SHA512: 935731e3608b0b30dc1df7852a06cb4e492a38a5bed4252cb7739d6eb16a89ddae63b87d93184452d066f4867b855bcb3434e3dc816323ae1153857f14a2755c
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: asieaf Alpaca driver for alpacahurd
+ The asieaf device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/asieaf.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-asiefw
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8040
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-asiefw_0.1.1_arm64.deb
+Size: 2345764
+MD5sum: 555599f19b1e30985bbd5d291eecfe88
+SHA1: 9628e2b060e5c169c4a293ccf9fc414d2c785844
+SHA256: 7f7d9481cadc273fcd1ad48e5bceebf9b06b47b0a7f5e1dd5282452bad8cbac7
+SHA512: 75141227b2ec693695f60d23c24239de467d18ce3a668fc363ca44a607f54e1e1d984c6b1005290351e6fd079b2542ba9db1080dc4020b28bda19f4b875f7508
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: asiefw Alpaca driver for alpacahurd
+ The asiefw device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/asiefw.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-astrocam
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8680
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-astrocam_0.1.1_arm64.deb
+Size: 2521700
+MD5sum: a2dbbad47ad436941af11b20f50bbf30
+SHA1: 5f7b088f7d1f4ef61929b41bc1bc63086bd36bdf
+SHA256: f5f1f328f5113e1267f62ccb54a8191d2d2d25f1e8b53a71a6ac9a9675005056
+SHA512: a37b147cdcff30318d7ebd4b1a4f126f7853f9a6f9f973bc070ac41382d3b54e15049ad0576c1a07aae6c6f65113b35450f7bf4720181780b8683eece5011d70
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: astrocam Alpaca driver for alpacahurd
+ The astrocam device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/astrocam.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-focuscube
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8040
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-focuscube_0.1.1_arm64.deb
+Size: 2353624
+MD5sum: 3968b72760f1b087da979e26b0277318
+SHA1: 22c07e0cff3de4c3f1471ae859bb59620123287a
+SHA256: 7a15764ff763e3f60a4f9afce6181005f2b1f5f0dda7bef24c1fe2d5f024c36b
+SHA512: 52295c8d34ec325964606c3f7e9eff83255b7ba58ac49312d746b297d02691c64034d7efd69b4f598b97349d60b821f91010e7a5d79f3fa39299a13aa5da89e6
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: focuscube Alpaca driver for alpacahurd
+ The focuscube device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/focuscube.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-focuslynx
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8104
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-focuslynx_0.1.1_arm64.deb
+Size: 2357904
+MD5sum: 96b90c03ee488d6a5addc39f1d22c79f
+SHA1: 9ffca713fec29697733370d315a745bcb73e1e31
+SHA256: 594c3c308814e2ca5e90852772b5cb0c2de7294f9ea4b0549677d29652ad4001
+SHA512: 8eb42c05e8b4e7a3a345a945563cf725e3884100c46ba1509450d806f93eeb610533fe1a893d1999ca11b4807592c735e875c4c083b55a7394c369b7a5833428
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: focuslynx Alpaca driver for alpacahurd
+ The focuslynx device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/focuslynx.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-mgpbox
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8936
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-mgpbox_0.1.1_arm64.deb
+Size: 2553172
+MD5sum: 0c15389d73819b73c579c30100375a9d
+SHA1: 87f3a98a21718eee4a4a1487db3fadf1b458f724
+SHA256: eba5828e34a4b88c12483ccd9fba47119007298077fd36f31c22ce5a4f630934
+SHA512: 3b8d98c11fd7f8cb4e39c12c11749cd77a47deda21e4f003c272cdcb9675ef5bc3840d8ccea77bd41242c5c96ae78fffbc7f8ae7db8187c6833f2963fe100701
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: mgpbox Alpaca driver for alpacahurd
+ The mgpbox device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/mgpbox.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-oasisfoc
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8104
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-oasisfoc_0.1.1_arm64.deb
+Size: 2356860
+MD5sum: 7ed39aa84b002b3eeaf1db677b084c61
+SHA1: c3931afb33cb40db15f5b29044739424ef14d320
+SHA256: c012cb9c49ed9b07bde8e27f529b4285cd30da277446030f981d966d8613b0a4
+SHA512: cadbb827864add5ff938ede32679159dbfe8a5ca5c36fb87d198f3ec9fccedfec7dcc91502fbc239274f6d2b7badbbf0bb048504a10c9e4d8fa64f2ad57fdf4e
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: oasisfoc Alpaca driver for alpacahurd
+ The oasisfoc device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/oasisfoc.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-oasisfw
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8040
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-oasisfw_0.1.1_arm64.deb
+Size: 2354984
+MD5sum: b87a587f6f852c02f0cbf5ae5eb5bb79
+SHA1: fbd7a3aa0936ebcdfdf3b721345df638c24e843c
+SHA256: da7aa3d0ff0c21ad13b0b211635c29df09414ac5e8e73d98a025bd7d63d29de4
+SHA512: 2e7b4453ba52ecfea66512f4914deebc9564a63ef4f89eecfd67e4197b7487a356970769804cb96259f543c581512d7dd4894e36c1a4a6e7b6b12c9cdded7bb6
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: oasisfw Alpaca driver for alpacahurd
+ The oasisfw device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/oasisfw.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-onstep
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8168
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-onstep_0.1.1_arm64.deb
+Size: 2375816
+MD5sum: c5bbf05df450641896b77324afd0e90f
+SHA1: c0ad7870501e8a149f16f6a153ea6d3c124dad2a
+SHA256: f420817c14fcf20c4c29c9db24d315318d2854d037a9f92095ea21381478e841
+SHA512: 9934f659fe4d7e98bdb33189d369249b2ea0e1c64be95596f7755ad51d382fa8a64ec12b8fa217c7a0a4ad01541e5e77fa2feaf424ec5cc66e710c53c15da720
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: onstep Alpaca driver for alpacahurd
+ The onstep device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/onstep.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-ptpcam
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8616
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-ptpcam_0.1.1_arm64.deb
+Size: 2506120
+MD5sum: 2fd14d6dfbbc84ed2e6ba435d68b26e8
+SHA1: 78206b0450bca541d5b1b3b9b8ef27822a08afa3
+SHA256: b808ed94d694228278935f7ef242a3fdc897d8b474cd9092c6af1e10c3e9ece3
+SHA512: 3b31c515acead6df5ba909ae616ab5eb48eda10b46b4e7340f00bce535243bb033a0651947709b67985e2cf00987ee3649cf95a523cb6d4f160be350418c7e33
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: ptpcam Alpaca driver for alpacahurd
+ The ptpcam device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/ptpcam.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-rst
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8296
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-rst_0.1.1_arm64.deb
+Size: 2412656
+MD5sum: 373700f01145dd4d0bf582ea415aa612
+SHA1: b2d20c4c848fa44791311de520280d4802cded3c
+SHA256: e759ef4b46a30dea071db211fb199486184b33674a196362a927adde4087558c
+SHA512: 55a1114273749d53b77f7d0926174b96a79d4f561ff27f4acb5e96d2ac4df5c47fbce241a565682438757c413c5e937556accb7d03d1c9d0c62fccffd1165fb4
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: rst Alpaca driver for alpacahurd
+ The rst device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/rst.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-tenmicron
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8424
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-tenmicron_0.1.1_arm64.deb
+Size: 2430644
+MD5sum: a0d926de0a766f11b833eeae81a30a07
+SHA1: a4916c51245db8622bd89f1c20a6ee6f10a14c46
+SHA256: 27ba9f07c67988929094070eaaab0cd1c610e028404e836d12975783d0fe0115
+SHA512: e8cd66d27533bf1631bb38af7e8a4eeaf5a473ac51070cf425d1884a9616b2d72a2fdd557159e86c4e45abc9a3be19cc14db3341ca187ce110fd82b34cefd443
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: tenmicron Alpaca driver for alpacahurd
+ The tenmicron device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/tenmicron.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-unihedron
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8104
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-drivers/alpacahurd-unihedron_0.1.1_arm64.deb
+Size: 2357732
+MD5sum: cd5f0ca74d680bf4b1b867c861c5e008
+SHA1: 43bba07f93e1c231730097b31ca858fdf55404ba
+SHA256: b4def90c85d4c9c420ea1d7cb945e4f08201bab718b63ef22a9e23ca3fb1a5f6
+SHA512: 07ec9ea7e2aa6a31e3d59554c0f172572063ec4d84a73fb264d0bbf51bae667dbae10260f59aa828fddd93d075357f5fc96b56b097a1ef9cf363ff4b100cd1c1
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: unihedron Alpaca driver for alpacahurd
+ The unihedron device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/unihedron.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd-polemaster
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 8104
+Depends: alpacahurd
+Filename: pool/trixie/main/a/alpacahurd-polemaster/alpacahurd-polemaster_0.1.1_arm64.deb
+Size: 2359396
+MD5sum: 176ae39908da89fb2ae7e8ecfcb0398b
+SHA1: 8bb18c0238103db3bff035aeb2b2335815f9e0e2
+SHA256: 64c7c274d9ef00fc1c9a52d816c414e4eb15182ca9ea98778c1a5bd0f1994e4e
+SHA512: 9058f79dbab9bd291443a6b103bd7366032b21cc376851ae2d2fa03473004c579e881967e6a99e001fee963b7dad05b6d0566a30fedc06ea96f67b92d4259eae
+Homepage: https://github.com/mikefsq/goalpaca-devices
+Description: polemaster Alpaca driver for alpacahurd
+ The polemaster device driver, built as its own binary. alpacahurd runs it as a
+ separate process and answers Alpaca discovery on its behalf, so this driver
+ can be installed, upgraded and removed without disturbing the rest of the
+ herd.
+ .
+ Installing this package seeds a disabled entry in
+ /etc/alpacahurd/devices.d/polemaster.json. Edit it for your hardware, set
+ "enable": true, and restart alpacahurd.
+
+Package: alpacahurd
+Architecture: arm64
+Version: 0.1.1
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 9652
+Depends: systemd, udev, init-system-helpers (>= 1.51)
+Filename: pool/trixie/main/a/alpacahurd/alpacahurd_0.1.1_arm64.deb
+Size: 2725516
+MD5sum: d42d8b44374180beeea0ac3fdccfeeea
+SHA1: 034330c2950d62c1bb8534bbf0ef682d5a86aa75
+SHA256: 126e00436bc87178a99a49cc310c4eef7203e88b288a12424962e2c29f0a1c00
+SHA512: 6f98d69d9cc2795e60763447ddc73b437e49142d013d2a82f4ed5ec84843f025fcd95ba38cbe51b43f35647a3ab1ee64366c20864cf950e5ee29552ef84f35fe
+Homepage: https://github.com/mikefsq/alpacahurd
+Description: ASCOM Alpaca server for astronomy devices
+ alpacahurd serves a herd of ASCOM Alpaca device drivers over HTTP and answers
+ Alpaca UDP discovery for all of them. Each device is configured by one JSON
+ file, and an orchestrator page at http://host:32227/setup shows the herd,
+ edits each configuration and restarts individual devices.
+ .
+ This package installs the orchestrator and the simulated devices, which serve
+ a complete no-hardware herd for verifying an install and developing clients.
+ Drivers for real mounts, cameras, focusers, filter wheels and observing
+ conditions ship as separate packages and install beside this one.
+
+Package: indihurd
+Architecture: arm64
+Version: 0.1.0
+Priority: optional
+Section: science
+Maintainer: mikefsq <162642838+mikefsq@users.noreply.github.com>
+Installed-Size: 9647
+Depends: systemd, init-system-helpers (>= 1.51), passwd
+Filename: pool/trixie/main/i/indihurd/indihurd_0.1.0_arm64.deb
+Size: 2772612
+MD5sum: 9f9971f9169e8c7066dca13383afa2d5
+SHA1: 16b6b3ca346639958f91aebe76cc9b48d2cf8c3b
+SHA256: 36e2e4cbba64f21fe424b4e31b7f53cf0da5f063dadf5efa2be7d5da06f65c79
+SHA512: 59cc137f123d0d03bcaa4604d58736a0e4aee8d0ffc614268a417b69215f0edb1da21c9fbdbdafbb4975ad8b5c086dccd297d3000bcbe76d373123a8d3245abc
+Homepage: https://github.com/mikefsq/indihurd
+Description: INDI driver manager with web configuration and Alpaca interfaces
+ Coordinates INDI drivers, maintains hardware connection configuration, and
+ provides browser management and INDI Web Manager compatibility for Ekos.
+ Replaces indiserver for INDI clients and provides ASCOM Alpaca mappings.
+ INDI driver binaries and their dependencies are installed separately.
+
+Package: phd2
+Architecture: arm64
+Version: 2.6.13.20260724023605.0~deb13
+Priority: optional
+Section: education
+Maintainer: PHD2 team https://github.com/OpenPHDGuiding/phd2
+Installed-Size: 35727
+Depends: libc6 (>= 2.38), libcfitsio10t64 (>= 4.2.0~), libcurl3t64-gnutls (>= 7.16.2), libgcc-s1 (>= 4.0), libnova-0.16-0t64 (>= 0.16), libopencv-core410 (>= 4.10.0+dfsg), libopencv-imgproc410 (>= 4.10.0+dfsg), libopencv-videoio410 (>= 4.10.0+dfsg), libstdc++6 (>= 14), libusb-1.0-0 (>= 2:1.0.9), libwxbase3.2-1t64 (>= 3.2.8+dfsg), libwxgtk3.2-1t64 (>= 3.2.8+dfsg), libx11-6, zlib1g (>= 1:1.1.4)
+Suggests: indi-bin
+Filename: pool/trixie/main/p/phd2/phd2_2.6.13.20260724023605.0~deb13_arm64.deb
+Size: 27080982
+MD5sum: 2da0aeb18c05953bc854644c00af2a42
+SHA1: d66f70d6c04fa99be722db38ac83a4d4543ba124
+SHA256: a3ca0dcf91749e14e6e0fcd22d640d395336ee6adacbf1591135da40f1e1304c
+SHA512: ef4e587a4663c4686745f622385688c3c8ee5268f7f528d613c27f8ab5916dbd7bba1c472248757febb7acb97c205540f00bed27cdb71aff92bfac59b4472903
+Description: PHD2 auto-guiding software
+
