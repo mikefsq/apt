@@ -13,7 +13,6 @@
       "repo": "mikefsq/alpacahurd",
       "release": "latest",
       "suites": [
-        "bookworm",
         "trixie"
       ],
       "arches": [
@@ -28,11 +27,28 @@
       ]
     },
     {
+      "name": "indihurd",
+      "repo": "mikefsq/indihurd",
+      "release": "latest",
+      "suites": [
+        "trixie"
+      ],
+      "arches": [
+        "amd64",
+        "arm64"
+      ],
+      "assets": [
+        {
+          "match": "indihurd_{version}_{arch}.deb",
+          "component": "main"
+        }
+      ]
+    },
+    {
       "name": "alpacahurd-drivers",
       "repo": "mikefsq/goalpaca-devices",
       "release": "latest",
       "suites": [
-        "bookworm",
         "trixie"
       ],
       "arches": [
@@ -103,7 +119,6 @@
       "repo": "mikefsq/goalpaca-devices",
       "release": "latest",
       "suites": [
-        "bookworm",
         "trixie"
       ],
       "arches": [
@@ -117,11 +132,49 @@
       ]
     },
     {
+      "name": "alpacahurd-polemaster",
+      "repo": "mikefsq/goalpaca-devices",
+      "release": "latest",
+      "suites": [
+        "trixie"
+      ],
+      "arches": [
+        "amd64",
+        "arm64"
+      ],
+      "assets": [
+        {
+          "match": "alpacahurd-polemaster_{version}_{arch}.deb",
+          "component": "main"
+        }
+      ]
+    },
+    {
+      "name": "alpacahurd-drivers-smpro",
+      "repo": "mikefsq/goalpaca-devices",
+      "release": "latest",
+      "suites": [
+        "trixie"
+      ],
+      "arches": [
+        "arm64"
+      ],
+      "assets": [
+        {
+          "match": "alpacahurd-smpro-focuser_{version}_{arch}.deb",
+          "component": "main"
+        },
+        {
+          "match": "alpacahurd-smpro-switch_{version}_{arch}.deb",
+          "component": "main"
+        }
+      ]
+    },
+    {
       "name": "phd2",
       "repo": "mikefsq/phd2",
       "release": "latest",
       "suites": [
-        "bookworm",
         "trixie"
       ],
       "arches": [

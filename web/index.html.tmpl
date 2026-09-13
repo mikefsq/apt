@@ -59,14 +59,13 @@ rather than the removed <code>apt-key</code> command:</p>
 <pre>sudo curl -fsSLo /usr/share/keyrings/@KEYRING@ \
   @ARCHIVE_URL@/@KEYRING@</pre>
 
-<p>Add the source, in the deb822 format Debian now prefers. Set
-<code>Suites</code> to the release you run and <code>Architectures</code> to
-your machine's:</p>
+<p>Add the source, in the deb822 format Debian now prefers. This archive supports
+Debian Trixie only. Set <code>Architectures</code> to your machine's:</p>
 
 <pre>sudo tee /etc/apt/sources.list.d/@SOURCES_FILE@ &gt;/dev/null &lt;&lt;'EOF'
 Types: deb
 URIs: @ARCHIVE_URL@
-Suites: bookworm
+Suites: trixie
 Components: main
 Architectures: arm64
 Signed-By: /usr/share/keyrings/@KEYRING@
